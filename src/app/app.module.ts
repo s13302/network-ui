@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppMenuComponent } from './app-menu/app-menu.component';
+import { EmittersModule } from './emitters/emitters.module';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppMenuComponent
+    AppMenuComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    EmittersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
