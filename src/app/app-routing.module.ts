@@ -9,6 +9,9 @@ const routes: Routes = [{
 }, {
   path: 'emitters',
   loadChildren: () => import('./emitters/emitters.module').then(m => m.EmittersModule)
+}, {
+  path: 'global',
+  loadChildren: () => import('./global/global.module').then(m => m.GlobalModule)
 }];
 
 @NgModule({

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppMenuComponent } from './app-menu/app-menu.component';
 import { EmittersModule } from './emitters/emitters.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { GlobalModule } from './global/global.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    EmittersModule
+    EmittersModule,
+    GlobalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
