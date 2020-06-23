@@ -45,6 +45,7 @@ export class EmittersAddComponent implements OnInit {
   private duplicatedTypesValidationFunction(): AsyncValidatorFn {
     return async (control) => {
       let emitters = await this.configurationService.emitters;
+      if (! emitters) return null;
       let isDuplicated = emitters.map(emitter => emitter.type).includes(control.value);
       return isDuplicated ? {
         duplicated: true,

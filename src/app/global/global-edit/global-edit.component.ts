@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { ConfigurationService } from 'src/app/configuration.service';
 import { environment } from 'src/environments/environment';
 
@@ -24,6 +24,7 @@ export class GlobalEditComponent implements OnInit {
     this.globalForm = this.formBuilder.group({
       sessionMapper: ['', [
         Validators.required,
+        this.noSpaceValidator(),
       ]]
     });
   }
@@ -40,6 +41,16 @@ export class GlobalEditComponent implements OnInit {
       this.success = false;
       this.error = true;
     }
+  }
+
+  private noSpaceValidator(): ValidatorFn {
+    return (control) => {
+      let value = control.value;
+      if (! value) return null;
+      return (value.trim().length <= 0) ? {
+        required: true,
+      } : null;
+    };
   }
 
   private async loadData() {
