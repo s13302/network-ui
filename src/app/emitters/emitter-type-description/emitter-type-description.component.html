@@ -1,0 +1,4 @@
+<div class="mt-4 alert alert-secondary" *ngIf="emitterType" [ngSwitch]="emitterType">
+  <p *ngSwitchCase="'pcap'"><b>PCAP</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse purus leo, mollis sit amet sollicitudin quis, ultricies sit amet turpis.</p>
+  <p *ngSwitchCase="'socket'"><b>Socket</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse purus leo, mollis sit amet sollicitudin quis, ultricies sit amet turpis.</p>
+</div>

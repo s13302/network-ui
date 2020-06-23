@@ -8,6 +8,7 @@ import { EmittersEditPcapComponent } from './emitters-edit/emitters-edit-pcap/em
 import { EmittersEditSocketComponent } from './emitters-edit/emitters-edit-socket/emitters-edit-socket.component';
 import { EmittersAddComponent } from './emitters-add/emitters-add.component';
 import { SharedModule } from '../shared/shared.module';
+import { EmitterTypeDescriptionComponent } from './emitter-type-description/emitter-type-description.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
     EmittersAddComponent,
     EmittersEditPcapComponent,
     EmittersEditSocketComponent,
+    EmitterTypeDescriptionComponent,
   ],
   imports: [
     CommonModule,
