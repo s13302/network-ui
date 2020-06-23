@@ -12,6 +12,7 @@
         <option value="pcap">PCAP</option>
         <option value="socket">Socket</option>
       </select>
+      <app-errors-component [errors]="emitterTypeForm.controls.type.errors"></app-errors-component>
       <div class="mt-4 alert alert-secondary" *ngIf="emitterTypeForm.controls.type.value">
         <p *ngIf="emitterTypeForm.controls.type.value == 'pcap'"><b>PCAP</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse purus leo, mollis sit amet sollicitudin quis, ultricies sit amet turpis.</p>
         <p *ngIf="emitterTypeForm.controls.type.value == 'socket'"><b>Socket</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse purus leo, mollis sit amet sollicitudin quis, ultricies sit amet turpis.</p>

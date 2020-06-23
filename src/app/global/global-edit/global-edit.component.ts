@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfigurationService } from 'src/app/configuration.service';
 import { environment } from 'src/environments/environment';
 
@@ -9,21 +10,27 @@ import { environment } from 'src/environments/environment';
 })
 export class GlobalEditComponent implements OnInit {
 
-  globalSessionMapper: string;
+  globalForm: FormGroup;
   success: boolean = false;
   error: boolean = false;
 
   constructor(
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private formBuilder: FormBuilder,
   ) { }
 
-  async ngOnInit() {
-    this.globalSessionMapper = await this.configurationService.globalSessionMapper;
+  ngOnInit() {
+    this.loadData();
+    this.globalForm = this.formBuilder.group({
+      sessionMapper: ['', [
+        Validators.required,
+      ]]
+    });
   }
 
-  async onSubmit(form) {
+  async onSubmit() {
     try {
-      this.globalSessionMapper = await this.configurationService.saveGlobalSessionMapper(this.globalSessionMapper);
+      await this.configurationService.saveGlobalSessionMapper(this.globalForm.value.sessionMapper);
       this.success = true;
       this.error = false;
     } catch (error) {
@@ -33,6 +40,11 @@ export class GlobalEditComponent implements OnInit {
       this.success = false;
       this.error = true;
     }
+  }
+
+  private async loadData() {
+    let globalSessionValue = await this.configurationService.globalSessionMapper;
+    this.globalForm.controls.sessionMapper.setValue(globalSessionValue);
   }
 
 }

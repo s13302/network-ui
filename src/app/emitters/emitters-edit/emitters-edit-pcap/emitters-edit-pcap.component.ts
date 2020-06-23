@@ -25,7 +25,7 @@ export class EmittersEditPcapComponent implements OnInit {
     this.childForm = this.formBuilder.group({
       device: [this.emitterDetails.device, [
         Validators.required,
-        Validators.pattern(/^[a-zA-Z]\w+$/),
+        Validators.pattern(/^[a-zA-Z]\w*$/),
       ]],
       bufferSize: [this.emitterDetails.bufferSize, [
         Validators.required,

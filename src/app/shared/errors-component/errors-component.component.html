@@ -1,0 +1,9 @@
+<div class="mt-4 alert alert-info" *ngIf="errors">
+  <ul>
+    <li *ngIf="errors.required">The field is required.</li>
+    <li *ngIf="errors.duplicated">Value of the field is a duplication.</li>
+    <li *ngIf="errors.min">Minimum value of this field is {{errors.min.min}} but actual is {{errors.min.actual}}.</li>
+    <li *ngIf="errors.max">Maximum value of this field is {{errors.max.max}} but actual is {{errors.max.actual}}.</li>
+    <li *ngIf="errors.pattern">The field should contain only ASCII characters and should start with letter.</li>
+  </ul>
+</div>

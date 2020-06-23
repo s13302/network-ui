@@ -10,11 +10,12 @@
   <div class="col-12 alert alert-danger" *ngIf="error">
     <p>Data has not been saved</p>
   </div>
-  <form class="col-12" #globalForm="ngForm" (submit)="onSubmit(globalForm)" novalidate>
+  <form class="col-12" (submit)="onSubmit()" [formGroup]="globalForm" novalidate>
     <div class="form-group">
       <label for="globalSessionMapper">Session mapper</label>
-      <input type="text" class="form-control" id="globalSessionMapper" name="globalSessionMapper" required="required" [(ngModel)]="globalSessionMapper">
+      <input type="text" class="form-control" id="globalSessionMapper" formControlName="sessionMapper">
     </div>
+    <app-errors-component [errors]="globalForm.controls.sessionMapper.errors"></app-errors-component>
     <div class="form-group">
       <button type="submit" class="btn btn-success">Save</button>
     </div>

@@ -2,9 +2,11 @@
   <div class="form-group">
     <label for="emitter-device">Device</label>
     <input type="text" id="emitter-device" class="form-control" formControlName="device">
+    <app-errors-component [errors]="childForm.controls.device.errors"></app-errors-component>
   </div>
   <div class="form-group">
     <label for="emitter-buffer-size">Buffer size</label>
     <input type="number" id="emitter-buffer-size" class="form-control" formControlName="bufferSize">
+    <app-errors-component [errors]="childForm.controls.bufferSize.errors"></app-errors-component>
   </div>
 </div>
