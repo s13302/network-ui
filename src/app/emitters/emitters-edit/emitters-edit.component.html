@@ -17,12 +17,8 @@
       <input type="checkbox" id="emitter-collect-metrics" class="form-check-input" formControlName="collectMetrics">
       <label for="emitter-collect-metrics">Collect metrics</label>
     </div>
-
-    <!--
-      TODO: Can be separate component which checks which plugins should be loaded
-    -->
-    <app-emitters-edit-pcap [parent-form]="emitterDetailsForm" [emitter-details]="emitterDetails" *ngIf="emitterDetails.type == 'pcap'"></app-emitters-edit-pcap>
-    <app-emitters-edit-socket [parent-form]="emitterDetailsForm" [emitter-details]="emitterDetails" *ngIf="emitterDetails.type == 'socket'"></app-emitters-edit-socket>
+    
+    <app-emitter-type [parent-form]="emitterDetailsForm" [emitter-details]="emitterDetails"></app-emitter-type>
 
     <div class="form-group">
       <a routerLink=".." class="m-2 btn btn-danger">Cancel</a>

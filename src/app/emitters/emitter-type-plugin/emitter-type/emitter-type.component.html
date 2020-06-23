@@ -1,0 +1,4 @@
+<div [ngSwitch]="emitterDetails.type">
+  <app-emitters-edit-pcap *ngSwitchCase="'pcap'" [parent-form]="parentForm" [emitter-details]="emitterDetails"></app-emitters-edit-pcap>
+  <app-emitters-edit-socket *ngSwitchCase="'socket'" [parent-form]="parentForm" [emitter-details]="emitterDetails"></app-emitters-edit-socket>
+</div>
