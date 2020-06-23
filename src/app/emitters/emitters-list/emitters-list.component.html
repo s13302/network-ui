@@ -15,12 +15,24 @@
           <th>Type</th>
           <th>Active</th>
           <th>Collect Metrics</th>
+          <th>Device</th>
           <th>Buffer Size</th>
           <th>Connection Timeout</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let emitter of emitters">
+          <td>{{emitter.type}}</td>
+          <td>{{emitter.active}}</td>
+          <td>{{emitter.collectMetrics}}</td>
+          <td>{{emitter.device}}</td>
+          <td>{{emitter.bufferSize}}</td>
+          <td>{{emitter.connectionTimeout}}</td>
+          <td>
+            <button class="m-2 btn btn-warning" (click)="doEdit(emitter)">Edit</button>
+            <button class="m-2 btn btn-danger" (click)="doDelete(emitter)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>

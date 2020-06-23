@@ -4,10 +4,15 @@
   </div>
 </div>
 <div class="row">
-  <form class="col-12">
+  <form (submit)="onSubmit(emitterForm)" #emitterForm="ngForm" class="col-12">
     <div class="form-group">
       <label for="emitter-type">Type</label>
-      <select name="emitter-type" id="emitter-type" class="form-control" required>
+      <div class="m-2 alert alert-danger" *ngIf="emitterType.errors">
+        <ul>
+          <li *ngIf="emitterType.errors.required">Type is required</li>
+        </ul>
+      </div>
+      <select name="emitter-type" id="emitter-type" class="form-control" required [(ngModel)]="emitterDetails.type" #emitterType="ngModel">
         <option selected></option>
         <option value="pcap">PCAP</option>
         <option value="socket">Socket</option>
