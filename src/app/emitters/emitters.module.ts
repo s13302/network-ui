@@ -9,7 +9,6 @@ import { EmittersEditComponent } from './emitters-edit/emitters-edit.component';
 import { EmittersEditPcapComponent } from './emitters-edit/emitters-edit-pcap/emitters-edit-pcap.component';
 import { EmittersEditSocketComponent } from './emitters-edit/emitters-edit-socket/emitters-edit-socket.component';
 import { EmittersAddComponent } from './emitters-add/emitters-add.component';
-import { MyCustomValidator } from '../validators/MyCustom.validator';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { MyCustomValidator } from '../validators/MyCustom.validator';
     EmittersAddComponent,
     EmittersEditPcapComponent,
     EmittersEditSocketComponent,
-    MyCustomValidator,
   ],
   imports: [
     CommonModule,

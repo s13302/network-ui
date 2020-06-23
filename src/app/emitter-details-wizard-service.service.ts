@@ -7,6 +7,7 @@ import { EmitterDetailsModel } from './model/emitter-details.model';
 export class EmitterDetailsWizardServiceService {
 
   emitterDetails: EmitterDetailsModel;
+  isEdit: boolean;
 
   constructor() { }
 }

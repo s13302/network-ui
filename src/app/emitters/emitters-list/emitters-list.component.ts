@@ -30,6 +30,7 @@ export class EmittersListComponent implements OnInit {
 
   async doEdit(emitter: EmitterDetailsModel) {
     this.emitterDetailsWizardServiceService.emitterDetails = emitter;
+    this.emitterDetailsWizardServiceService.isEdit = true;
     this.router.navigate(['emitters', 'edit']);
   }
 

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { EmitterDetailsWizardServiceService } from 'src/app/emitter-details-wizard-service.service';
 import { ConfigurationService } from 'src/app/configuration.service';
 import { EmitterDetailsModel } from 'src/app/model/emitter-details.model';
-import { MyCustomValidator } from 'src/app/validators/MyCustom.validator';
 
 @Component({
   selector: 'app-emitters-edit',
@@ -33,11 +32,7 @@ export class EmittersEditComponent implements OnInit {
       type: [{
         value: this.emitterDetails.type,
         disabled: true,
-      }, [
-        Validators.required,
-      ], [
-        MyCustomValidator,
-      ]],
+      }],
       active: [this.emitterDetails.active],
       collectMetrics: [this.emitterDetails.collectMetrics]
     });
@@ -46,7 +41,17 @@ export class EmittersEditComponent implements OnInit {
   async onSubmit() {
     if (this.emitterDetailsForm.valid) {
       try {
-        await this.configurationService.addEmitterDetails(this.emitterDetailsForm.value);
+        let toSave = this.emitterDetailsForm.getRawValue();
+        toSave = {
+          ...toSave,
+          ...toSave.childForm
+        };
+        delete toSave.childForm;
+        if (this.emitterDetailsWizardServiceService.isEdit) {
+          await this.configurationService.editEmitterDetails(toSave.type, toSave);
+        } else {
+          await this.configurationService.addEmitterDetails(toSave);
+        }
         this.router.navigate(['emitters']);
       } catch (error) {
         this.errorMessage = error.message;

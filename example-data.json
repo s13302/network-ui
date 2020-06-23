@@ -1,20 +1,20 @@
 {
-    "emitter": {
-      "sessionMapper": "*:* -> 172.16.60.157:3306",
-      "emitters": [
-        {
-          "type": "pcap",
-          "active": true,
-          "collectMetrics": false,
-          "device": "eth0",
-          "bufferSize": 1024
-        },
-        {
-          "type": "socket",
-          "active": false,
-          "collectMetrics": true,
-          "connectionTimeout": 10
-        }
-      ]
-    }
+  "emitter": {
+    "sessionMapper": "*:* -> 172.16.60.157:3306",
+    "emitters": [
+      {
+        "type": "pcap",
+        "active": true,
+        "collectMetrics": false,
+        "device": "eth0",
+        "bufferSize": 1024
+      },
+      {
+        "type": "socket",
+        "active": false,
+        "collectMetrics": true,
+        "connectionTimeout": 10
+      }
+    ]
   }
+}

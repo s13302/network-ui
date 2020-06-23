@@ -55,12 +55,23 @@ export class ConfigurationService {
         if (! emitterModel.emitters) {
           emitterModel.emitters = new Array();
         }
-        if (emitterModel.emitters.map(emitter => emitter.type).includes(valueToSave.type)) {
-          throw new Error('Cannot add more than 1 emitter of the same type');
-        }
         emitterModel.emitters.push(valueToSave);
         this.saveEmitterModel(emitterModel);
         resolve(emitterModel);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  editEmitterDetails(emitterType: string, valueToSave: EmitterDetailsModel): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let emitterModel = await this.emitterModel;
+        let elementNumber = emitterModel.emitters.findIndex(emitter => emitter.type == emitterType);
+        emitterModel.emitters[elementNumber] = valueToSave;
+        this.saveEmitterModel(emitterModel);
+        resolve();
       } catch (error) {
         reject(error);
       }
