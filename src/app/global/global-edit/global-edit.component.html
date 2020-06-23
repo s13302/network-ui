@@ -10,7 +10,7 @@
   <div class="col-12 alert alert-danger" *ngIf="error">
     <p>Data has not been saved</p>
   </div>
-  <form class="col-12" #globalForm="ngForm" (submit)="onSubmit(globalForm)">
+  <form class="col-12" #globalForm="ngForm" (submit)="onSubmit(globalForm)" novalidate>
     <div class="form-group">
       <label for="globalSessionMapper">Session mapper</label>
       <input type="text" class="form-control" id="globalSessionMapper" name="globalSessionMapper" required="required" [(ngModel)]="globalSessionMapper">

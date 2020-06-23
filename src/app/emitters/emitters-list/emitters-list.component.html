@@ -9,7 +9,7 @@
 </div>
 <div class="row">
   <div class="col-12">
-    <table class="table table-striped">
+    <table class="table table-striped" *ngIf="emitters && emitters.length > 0">
       <thead>
         <tr>
           <th>Type</th>
@@ -36,5 +36,8 @@
         </tr>
       </tbody>
     </table>
+    <div class="mt-2 alert alert-secondary" *ngIf="! emitters || emitters.length == 0">
+      <p>At least 1 emitter is required</p>
+    </div>
   </div>
 </div>

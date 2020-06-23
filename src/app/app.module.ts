@@ -12,7 +12,7 @@ import { GlobalModule } from './global/global.module';
   declarations: [
     AppComponent,
     AppMenuComponent,
-    LandingPageComponent
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

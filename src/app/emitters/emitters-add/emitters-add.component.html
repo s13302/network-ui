@@ -7,16 +7,20 @@
   <form (submit)="onSubmit(emitterForm)" #emitterForm="ngForm" class="col-12">
     <div class="form-group">
       <label for="emitter-type">Type</label>
-      <div class="m-2 alert alert-danger" *ngIf="emitterType.errors">
-        <ul>
-          <li *ngIf="emitterType.errors.required">Type is required</li>
-        </ul>
-      </div>
       <select name="emitter-type" id="emitter-type" class="form-control" required [(ngModel)]="emitterDetails.type" #emitterType="ngModel">
         <option selected></option>
         <option value="pcap">PCAP</option>
         <option value="socket">Socket</option>
       </select>
+      <div class="mt-4 alert alert-info" *ngIf="emitterType.errors">
+        <ul>
+          <li *ngIf="emitterType.errors.required">Type is required</li>
+        </ul>
+      </div>
+      <div class="mt-4 alert alert-secondary" *ngIf="emitterDetails.type">
+        <p *ngIf="emitterDetails.type == 'pcap'"><b>PCAP</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse purus leo, mollis sit amet sollicitudin quis, ultricies sit amet turpis.</p>
+        <p *ngIf="emitterDetails.type == 'socket'"><b>Socket</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse purus leo, mollis sit amet sollicitudin quis, ultricies sit amet turpis.</p>
+      </div>
     </div>
     <div class="form-group">
       <a routerLink=".." class="m-2 btn btn-danger">Cancel</a>
