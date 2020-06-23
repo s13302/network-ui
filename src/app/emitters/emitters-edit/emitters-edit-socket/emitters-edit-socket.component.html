@@ -1,11 +1,4 @@
-<div class="form-group">
+<div class="form-group" [formGroup]="childForm">
   <label for="emitter-connection-timeout">Connection timeout</label>
-  <input type="number" name="emitter-connection-timeout" id="emitter-connection-timeout" class="form-control" min="60000" max="600000" required="required" [(ngModel)]="emitterDetails.connectionTimeout" #emitterConnectionTimeout="ngModel" >
-  <div class="alert alert-info" *ngIf="emitterConnectionTimeout.errors">
-    <ul>
-      <li *ngIf="emitterConnectionTimeout.errors.required">Connection timeout is required.</li>
-      <li *ngIf="emitterConnectionTimeout.errors.min">Connection timeout should be greater or equal 60 000 (1min).</li>
-      <li *ngIf="emitterConnectionTimeout.errors.max">Connection timeout should be less or equal 600 000 (10min).</li>
-    </ul>
-  </div>
+  <input type="number" id="emitter-connection-timeout" class="form-control" formControlName="connectionTimeout">
 </div>

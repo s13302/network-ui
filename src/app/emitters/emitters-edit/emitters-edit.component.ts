@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EmitterDetailsWizardServiceService } from 'src/app/emitter-details-wizard-service.service';
 import { ConfigurationService } from 'src/app/configuration.service';
 import { EmitterDetailsModel } from 'src/app/model/emitter-details.model';
+import { MyCustomValidator } from 'src/app/validators/MyCustom.validator';
 
 @Component({
   selector: 'app-emitters-edit',
@@ -16,20 +17,36 @@ export class EmittersEditComponent implements OnInit {
   emitterDetails: EmitterDetailsModel;
   errorMessage: string;
 
+  emitterDetailsForm: FormGroup;
+
   constructor(
     private router: Router,
+    private formBuilder: FormBuilder,
     private configurationService: ConfigurationService,
     private emitterDetailsWizardServiceService: EmitterDetailsWizardServiceService,
   ) { }
 
   ngOnInit() {
     this.emitterDetails = this.emitterDetailsWizardServiceService.emitterDetails;
+
+    this.emitterDetailsForm = this.formBuilder.group({
+      type: [{
+        value: this.emitterDetails.type,
+        disabled: true,
+      }, [
+        Validators.required,
+      ], [
+        MyCustomValidator,
+      ]],
+      active: [this.emitterDetails.active],
+      collectMetrics: [this.emitterDetails.collectMetrics]
+    });
   }
 
-  async onSubmit(form: NgForm) {
-    if (form.valid) {
+  async onSubmit() {
+    if (this.emitterDetailsForm.valid) {
       try {
-        await this.configurationService.addEmitterDetails(this.emitterDetails);
+        await this.configurationService.addEmitterDetails(this.emitterDetailsForm.value);
         this.router.navigate(['emitters']);
       } catch (error) {
         this.errorMessage = error.message;

@@ -4,27 +4,29 @@
   </div>
 </div>
 <div class="row">
-  <form (submit)="onSubmit(emitterForm)" #emitterForm="ngForm" class="col-12" novalidate>
-    <div class="alert alert-danger" *ngIf="errorMessage">
-      <p>{{errorMessage}}</p>
-    </div>
+  <form class="col-12" (submit)="onSubmit()" [formGroup]="emitterDetailsForm" novalidate>
     <div class="form-group">
       <label for="emitter-type">Type</label>
-      <input type="text" class="form-control" name="emitter-type" id="emitter-type" disabled="disabled" [(ngModel)]="emitterDetails.type" #emitterType="ngModel">
+      <input type="text" id="emitter-type" class="form-control" formControlName="type">
     </div>
     <div class="form-group form-check">
-      <input type="checkbox" name="emitter-active" id="emitter-active" class="form-check-input" [(ngModel)]="emitterDetails.active" #emitterActive="ngModel">
-      <label for="emitter-active" class="form-check-label">Active</label>
+      <input type="checkbox" id="emitter-active" class="form-check-input" formControlName="active">
+      <label for="emitter-active">Active</label>
     </div>
     <div class="form-group form-check">
-      <input type="checkbox" name="emitter-collect-metrics" id="emitter-collect-metrics" class="form-check-input" [(ngModel)]="emitterDetails.collectMetrics" #emitterCollectMetrics="ngModel">
-      <label for="emitter-collect-metrics" class="form-check-label">Collect metrics</label>
+      <input type="checkbox" id="emitter-collect-metrics" class="form-check-input" formControlName="collectMetrics">
+      <label for="emitter-collect-metrics">Collect metrics</label>
     </div>
-    <app-emitters-edit-pcap [parent-form]="emitterForm" [emitter-details]="emitterDetails" *ngIf="emitterDetails.type == 'pcap'"></app-emitters-edit-pcap>
-    <app-emitters-edit-socket [parent-form]="emitterForm" [emitter-details]="emitterDetails" *ngIf="emitterDetails.type == 'socket'"></app-emitters-edit-socket>
+
+    <!--
+      TODO: Can be separate component which checks which plugins should be loaded
+    -->
+    <app-emitters-edit-pcap [parent-form]="emitterDetailsForm" [emitter-details]="emitterDetails" *ngIf="emitterDetails.type == 'pcap'"></app-emitters-edit-pcap>
+    <app-emitters-edit-socket [parent-form]="emitterDetailsForm" [emitter-details]="emitterDetails" *ngIf="emitterDetails.type == 'socket'"></app-emitters-edit-socket>
+
     <div class="form-group">
       <a routerLink=".." class="m-2 btn btn-danger">Cancel</a>
-      <button type="submit" class="m-2 btn btn-success">Next</button>
+      <button type="submit" class="m-2 btn btn-success" [disabled]="! emitterDetailsForm.valid">Next</button>
     </div>
   </form>
 </div>

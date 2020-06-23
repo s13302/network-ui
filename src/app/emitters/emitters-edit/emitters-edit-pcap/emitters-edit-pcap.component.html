@@ -1,21 +1,10 @@
-<div class="form-group">
-  <label for="emitter-device">Device</label>
-  <input type="text" name="emitter-device" id="emitter-device" class="form-control" pattern="^[a-zA-Z]\w*$" required="required" [(ngModel)]="emitterDetails.device" #emitterDevice="ngModel">
-  <div class="alert alert-info" *ngIf="emitterDevice.errors">
-    <ul>
-      <li *ngIf="emitterDevice.errors.required">Device is required.</li>
-      <li *ngIf="emitterDevice.errors.pattern">Device name should contain only ASCII characters. The first character cannot be number.</li>
-    </ul>
+<div [formGroup]="childForm">
+  <div class="form-group">
+    <label for="emitter-device">Device</label>
+    <input type="text" id="emitter-device" class="form-control" formControlName="device">
   </div>
-</div>
-<div class="form-group">
-  <label for="emitter-buffer-size">Buffer size</label>
-  <input type="number" name="emitter-buffer-size" id="emitter-buffer-size" class="form-control" min="1024" max="10240" required="required" [(ngModel)]="emitterDetails.bufferSize" #emitterBufferSize="ngModel">
-  <div class="alert alert-info" *ngIf="emitterBufferSize.errors">
-    <ul>
-      <li *ngIf="emitterBufferSize.errors.required">Buffer size is required.</li>
-      <li *ngIf="emitterBufferSize.errors.min">Buffer size should be greater or equal 1024 (1MB).</li>
-      <li *ngIf="emitterBufferSize.errors.max">Buffer size should be less or equal 10240 (10MB).</li>
-    </ul>
+  <div class="form-group">
+    <label for="emitter-buffer-size">Buffer size</label>
+    <input type="number" id="emitter-buffer-size" class="form-control" formControlName="bufferSize">
   </div>
 </div>
